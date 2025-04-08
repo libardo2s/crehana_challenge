@@ -6,6 +6,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
+      - static_volume:/app/static
     working_dir: /code
     ports:
       - "8000:8000"
@@ -23,7 +24,7 @@ services:
 
   format:
     build: .
-    command: black .
+    command: sh -c "isort . && black ."
     volumes:
       - .:/code
     working_dir: /code
@@ -39,3 +40,5 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - DJANGO_SETTINGS_MODULE=todolist.settings
+volumes:
+  static_volume:

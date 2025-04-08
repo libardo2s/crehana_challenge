@@ -1,4 +1,5 @@
 from django.urls import path
+
 from todolistapp.views import TodoView, TodoViewDetails
 
 urlpatterns = [
