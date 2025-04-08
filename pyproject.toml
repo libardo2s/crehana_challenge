@@ -20,7 +20,6 @@ exclude = '''
 )/
 '''
 
-# .isort.cfg
-[settings]
-known_first_party = myapp 
-lines_after_imports = 2 
+[tool.isort]
+known_first_party = "myapp"
+lines_after_imports = 2
