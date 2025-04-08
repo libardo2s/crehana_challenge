@@ -1,0 +1,26 @@
+[tool.black]
+line-length = 88
+target-version = ['py39']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | env
+  | \.env
+  | migrations
+  | __pycache__
+  | media
+  | static
+  | node_modules
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.tox
+  | venv
+)/
+'''
+
+# .isort.cfg
+[settings]
+known_first_party = myapp 
+lines_after_imports = 2 
