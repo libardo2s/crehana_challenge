@@ -18,8 +18,8 @@ API RESTful creada con Python y Django para el manejo de un lista de tareas
 
 #### Clonar el repositorio:
 ```bash
-    git clone https://github.com/tu-usuario/tu-proyecto.git
-    cd tu-proyecto
+    git clone https://github.com/libardo2s/crehana_challenge.git
+    cd crehana_challenge
 ```
 #### Construir imágenes y levantar contenedores
     
