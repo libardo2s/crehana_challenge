@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -7,6 +8,15 @@ from .models import Todo
 from .serializers import TodoSerializer
 from .utils import flatten_errors
 
+def welcome_view(request):
+    return HttpResponse("""
+        <h1>Welcome to the Todo List API!</h1>
+        <p>Available endpoints:</p>
+        <ul>
+            <li>/admin - Admin interface</li>
+            <li>/api - Your API endpoints</li>
+        </ul>
+    """)
 
 class TodoView(APIView):
     """
