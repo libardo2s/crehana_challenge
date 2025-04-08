@@ -27,7 +27,7 @@ API RESTful creada con Python y Django para el manejo de un lista de tareas
    
 ### Corres test:
     
-    docker-compose run --rm web python manage.py test
+    docker-compose run --rm test
     
 #### Permisos solo en Linux o subsistema WSL
     chmod -R 755 . && find . -type f -exec chmo 644 {} \;
