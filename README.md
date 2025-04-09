@@ -1,46 +1,115 @@
-# Nombre del Proyecto
+# Reto Crehana - API de Lista de Tareas
 
-[![Django](https://img.shields.io/badge/Django-4.2-brightgreen)](https://www.djangoproject.com/)
-[![DRF](https://img.shields.io/badge/Django_REST_Framework-3.14-blue)](https://www.django-rest-framework.org/)
-[![Docker](https://img.shields.io/badge/Docker-✔-blue)](https://www.docker.com/)
+![Django](https://img.shields.io/badge/Django-3.2-green)
+![DRF](https://img.shields.io/badge/Django_REST_Framework-3.14-blue)
+![Docker](https://img.shields.io/badge/Docker-24.0-yellow)
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
 
-## 📝 API de lista de tareas (TODO)
-API RESTful creada con Python y Django para el manejo de un lista de tareas 
+API RESTful construida con Django REST Framework y Docker para gestión de tareas (operaciones CRUD).
 
-## 🛠️ Configuración del Entorno Local
+## Características Principales
+- Operaciones CRUD para tareas
+- Endpoints RESTful
+- Base de datos SQLite (desarrollo)
+- Dockerizada para fácil despliegue
+- Formateo de código con Flake8
+- Configuración completa de pruebas
+- Poetry para gestión de dependencias
 
-### Requisitos previos
+## Estructura del Proyecto ToDoList
+    crehana_challenge/
+    ├── todolist/ # Configuración principal del proyecto Django
+    │ ├── init.py
+    │ ├── asgi.py # Configuración ASGI para despliegue
+    │ ├── settings.py # Configuración del proyecto
+    │ ├── urls.py # URLs principales
+    │ └── wsgi.py # Configuración WSGI para despliegue
+    │
+    ├── todolistapp/ # Aplicación principal
+    │ ├── migrations/ # Migraciones de base de datos
+    │ ├── init.py
+    │ ├── admin.py # Panel de administración
+    │ ├── apps.py # Configuración de la app
+    │ ├── models.py # Modelos de datos
+    │ ├── serializers.py # Serializadores para DRF
+    │ ├── tests.py # Pruebas unitarias
+    │ ├── urls.py # URLs de la app
+    │ ├── utils.py # Utilidades
+    │ └── views.py # Controladores
+    │
+    ├── .flake8 # Configuración de linter
+    ├── db.sqlite3 # Base de datos local (dev)
+    ├── docker-compose.yml # Configuración multi-contenedor
+    ├── Dockerfile # Configuración del contenedor
+    ├── manage.py # CLI de Django
+    ├── pyproject.toml # Dependencias (Poetry)
+    ├── pytest.ini # Configuración de tests
+    ├── README.md # Documentación
+    └── requirements.txt # Dependencias (pip)
+
+### Estructura Django típica:
+1. **Carpeta raíz del proyecto** (`todolist/`):
+   - Contiene configuración global (settings, URLs principales)
+   - Archivos de despliegue (WSGI/ASGI)
+
+2. **App principal** (`todolistapp/`):
+   - Sigue el patrón MVT (Models-Views-Templates)
+   - Incluye serializadores para REST API
+
+3. **Herramientas de desarrollo**:
+   - Docker para containerización
+   - Poetry/pip para gestión de dependencias
+   - Pytest para testing
+    
+## Configuración del Entorno Local
+
+### Requisitos Previos
 - Docker Engine 20.10+
 - Docker Compose 1.29+
-- Python 3.9+ (opcional para desarrollo sin Docker)
 
-### Instrucciones para correr proyecto
-
-#### Clonar el repositorio:
-```bash
+### Instalación
     git clone https://github.com/libardo2s/crehana_challenge.git
     cd crehana_challenge
-```
-#### Construir imágenes y levantar contenedores
+
+### Ejecutar el Proyecto
     
     docker-compose up --build web
+
+    La API estará disponible en: http://localhost:8000/api/tasks/
    
-### Corres test:
-    
+### Comandos de Desarrollo:
+
+#### Ejecutar Pruebas
     docker-compose run --rm test
-    
-#### Permisos solo en Linux o subsistema WSL
-    chmod -R 755 . && find . -type f -exec chmo 644 {} \;
 
-### Comandos utiles:
+#### Aplicar Migraciones
+    docker-compose run --rm web python manage.py makemigrations
+    docker-compose run --rm web python manage.py migrate
 
-#### Detener contenedores
-    docker-compose down
-
-#### Formatear el codigo
+#### Formatear Código
     docker-compose run --rm format
 
-#### Correr migraiones
-    docker-compose run --rm web python manage.py makemigrations
+#### Detener Contenedores
+    docker-compose down
+    
+#### Permisos en Linux/WSL (si es necesario)
+    chmod -R 755 . && find . -type f -exec chmo 644 {} \;
 
-    docker-compose run --rm web python manage.py migrate
+## Configuración del Entorno Local
+    
+#### Endpoints
+
+    GET /api/tasks/ - Listar todas las tareas
+    POST /api/tasks/ - Crear nueva tarea
+    GET /api/tasks/{id}/ - Obtener tarea específica
+    PUT /api/tasks/{id}/ - Actualizar tarea
+    DELETE /api/tasks/{id}/ - Eliminar tarea (Soft delete)
+
+#### Ejemplo de Request (Crear Tarea)
+
+    POST /api/tasks/
+    {
+        "title": "Completar reto",
+        "description": "Terminar el reto de Crehana",
+        "completed": false
+    }
