@@ -79,12 +79,14 @@ API RESTful construida con Django REST Framework y Docker para gestión de tarea
    
 ### Comandos de Desarrollo:
 
-#### Ejecutar Pruebas
-    docker-compose run --rm test
-
 #### Aplicar Migraciones
     docker-compose run --rm web python manage.py makemigrations
     docker-compose run --rm web python manage.py migrate
+
+#### Ejecutar Pruebas
+    docker-compose run --rm test
+
+    Nota: asegurarse de correr las migraciones primero antes de correr los tests
 
 #### Formatear Código
     docker-compose run --rm format
